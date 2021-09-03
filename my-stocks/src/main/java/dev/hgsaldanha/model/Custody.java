@@ -15,7 +15,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Custody implements Serializable {
+public class Custody implements Serializable { //TODO precisa dessa classe?
 	/**
 	 * 
 	 */
@@ -24,6 +24,8 @@ public class Custody implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	private Stock stock;
 
 	@Temporal(TemporalType.DATE)
 	private LocalDate startDate;
