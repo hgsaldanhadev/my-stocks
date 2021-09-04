@@ -16,8 +16,6 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import lombok.Data;
 
@@ -40,10 +38,8 @@ public class Operation {
 	@OneToMany(mappedBy = "operation", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<OperationHistory> history;
 
-	@Temporal(TemporalType.DATE)
 	private LocalDate startDate;
 
-	@Temporal(TemporalType.DATE)
 	private LocalDate closingDate;
 
 	private BigDecimal startPrice;

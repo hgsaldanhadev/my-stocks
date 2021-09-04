@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import lombok.Data;
 
@@ -27,10 +25,8 @@ public class Custody implements Serializable { //TODO precisa dessa classe?
 	
 	private Stock stock;
 
-	@Temporal(TemporalType.DATE)
 	private LocalDate startDate;
 
-	@Temporal(TemporalType.DATE)
 	private LocalDate closingDate;
 
 	private Long quantity;
