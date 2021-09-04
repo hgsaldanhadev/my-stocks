@@ -1,7 +1,9 @@
 package dev.hgsaldanha.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
@@ -34,9 +36,9 @@ public class Operation {
 
 	@OneToOne(optional = false)
 	private Stock stock;
-	
-	@OneToMany(mappedBy = "operation",cascade = CascadeType.ALL,orphanRemoval = true)
-	private OperationHistory history;
+
+	@OneToMany(mappedBy = "operation", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<OperationHistory> history;
 
 	@Temporal(TemporalType.DATE)
 	private LocalDate startDate;
@@ -47,11 +49,31 @@ public class Operation {
 	private BigDecimal startPrice;
 
 	private BigDecimal closingPrice;
-	
+
 	private String notes;
 
 	public boolean isOpen() {
 		return closingDate == null ? true : false;
+	}
+
+	public Integer getQuantity() {
+		return history.stream().map(oper -> oper.getQuantity()).reduce(0, Integer::sum);
+	}
+	
+	public String getAveragePrice() {
+		BigDecimal sum = new BigDecimal("0");
+		Integer q = 0;
+		BigDecimal average = new BigDecimal("0");
+		for (OperationHistory oper : history) {
+			q += oper.getQuantity();
+			if (oper.getQuantity() > 0) {
+				sum = sum.add(oper.getPrice().multiply(new BigDecimal(oper.getQuantity())));
+				average = sum.divide(new BigDecimal(String.valueOf(q)),2,RoundingMode.HALF_DOWN);
+			} else {
+				sum = average.multiply(new BigDecimal(String.valueOf(q)));
+			}
+		}
+		return average.toString();
 	}
 
 }

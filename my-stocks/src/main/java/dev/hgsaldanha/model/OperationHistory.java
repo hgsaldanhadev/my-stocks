@@ -1,16 +1,16 @@
 package dev.hgsaldanha.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import lombok.Data;
+import lombok.NonNull;
 
 @Data
 @Entity
@@ -23,28 +23,34 @@ public class OperationHistory {
 	@ManyToOne
 	private Operation operation;
 	
+	@NonNull
 	private LocalDate date;
 	
-	private Long quantity;
+	@NonNull
+	private Integer quantity;
 	
-	@Enumerated(EnumType.STRING)
-	private OperationHistoryType type;
-
-	public enum OperationHistoryType {
-		
-		C("Compra"),V("Venda");
-		
-		private String type;
-		
-		OperationHistoryType(String type) {
-			this.type = type;
-		}
-
-		@Override
-		public String toString() {
-			return this.type;
-		}
-
-	}
+	@NonNull
+	private BigDecimal price;
+	
+	//TODO precisa desse enum?
+//	@Enumerated(EnumType.STRING)
+//	private OperationHistoryType type;
+//
+//	public enum OperationHistoryType {
+//		
+//		C("Compra"),V("Venda");
+//		
+//		private String type;
+//		
+//		OperationHistoryType(String type) {
+//			this.type = type;
+//		}
+//
+//		@Override
+//		public String toString() {
+//			return this.type;
+//		}
+//
+//	}
 
 }
