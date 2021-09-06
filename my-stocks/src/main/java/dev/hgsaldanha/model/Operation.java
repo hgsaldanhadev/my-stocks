@@ -30,7 +30,7 @@ public class Operation {
 	private Long id;
 
 	@ManyToOne(optional = false)
-	private StockBroker broker;
+	private Broker broker;
 
 	@OneToOne(optional = false)
 	private Stock stock;

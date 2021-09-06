@@ -10,7 +10,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class StockBroker {
+public class Broker {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
