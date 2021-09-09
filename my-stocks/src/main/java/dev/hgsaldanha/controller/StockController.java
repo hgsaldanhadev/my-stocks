@@ -7,13 +7,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import dev.hgsaldanha.exception.StockNotFoundException;
 import dev.hgsaldanha.model.Stock;
 import dev.hgsaldanha.service.StockService;
 
 @RestController
 @RequestMapping("/api/stocks")
 public class StockController {
-	
+
 	@Autowired
 	private StockService stockService;
 
@@ -21,10 +22,9 @@ public class StockController {
 	public List<Stock> getStocks() {
 		return stockService.getStocks();
 	}
-	
-	//TODO testar retorno em caso de entity not found exception
+
 	@GetMapping("/{id}")
-	public Stock getStock(Integer id) {
+	public Stock getStock(Integer id) throws StockNotFoundException {
 		return stockService.getStock(id);
 	}
 }
