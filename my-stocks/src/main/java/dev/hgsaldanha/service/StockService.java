@@ -19,7 +19,7 @@ public class StockService {
 		return stocks.findAll(Sort.by("ticker"));
 	}
 
-	public Stock getStock(Long id) {
+	public Stock getStock(Integer id) {
 		return stocks.getById(id);
 	}
 

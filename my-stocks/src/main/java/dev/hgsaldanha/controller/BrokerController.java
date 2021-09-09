@@ -24,7 +24,7 @@ public class BrokerController {
 	
 	//TODO testar retorno em caso de entity not found exception
 	@GetMapping("/{id}")
-	public Broker getBroker(Long id) {
+	public Broker getBroker(Integer id) {
 		return brokerService.getBroker(id);
 	}
 }

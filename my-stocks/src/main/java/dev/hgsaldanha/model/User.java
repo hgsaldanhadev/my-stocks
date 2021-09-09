@@ -1,29 +1,25 @@
 package dev.hgsaldanha.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
 @Data
 @Entity
-public class Stock implements Serializable {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 396999447428901716L;
-	
+public class User {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	
-	private String ticker;
-	
+	@NotNull
 	private String name;
-
+	
+	@Email
+	private String email;
 }

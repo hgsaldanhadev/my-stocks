@@ -19,7 +19,7 @@ public class BrokerService {
 		return brokers.findAll(Sort.by("name"));
 	}
 
-	public Broker getBroker(Long id) {
+	public Broker getBroker(Integer id) {
 		return brokers.getById(id);
 	}
 

@@ -24,7 +24,7 @@ public class StockController {
 	
 	//TODO testar retorno em caso de entity not found exception
 	@GetMapping("/{id}")
-	public Stock getStock(Long id) {
+	public Stock getStock(Integer id) {
 		return stockService.getStock(id);
 	}
 }

@@ -16,6 +16,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.PastOrPresent;
 
 import lombok.Data;
 
@@ -34,12 +35,17 @@ public class Operation {
 
 	@OneToOne(optional = false)
 	private Stock stock;
+	
+	@OneToOne(optional = false)
+	private User user;
 
 	@OneToMany(mappedBy = "operation", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<OperationHistory> history;
 
+	@PastOrPresent
 	private LocalDate startDate;
 
+	@PastOrPresent
 	private LocalDate closingDate;
 
 	private BigDecimal startPrice;
