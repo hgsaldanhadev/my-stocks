@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import dev.hgsaldanha.model.Operation;
 import dev.hgsaldanha.model.OperationHistory;
 
-public class OperationTests {
+public class OperationUnitTests {
 
 	@Test
 	public void givenOperationHistory_thenAveragePriceAndQuantity() {

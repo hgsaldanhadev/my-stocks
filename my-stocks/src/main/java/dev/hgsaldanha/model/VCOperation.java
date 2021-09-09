@@ -24,7 +24,7 @@ public class VCOperation extends Operation {
 	private BigDecimal strike;
 	
 	@Enumerated(EnumType.STRING)
-	private VCType type;
+	private VCType optionType;
 
 	public enum VCType {
 		P("Venda Coberta de Put"), C("Venda Coberta de Call");
