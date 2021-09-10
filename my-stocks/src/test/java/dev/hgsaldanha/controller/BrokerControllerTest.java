@@ -27,8 +27,10 @@ class BrokerControllerTest {
 
 	@Autowired
 	private MockMvc mvc;
+	
+	private final String api = "/api/brokers";
 
-	private String testLocation = "/api/brokers/2";
+	private String testLocation = api + "/2";
 
 	private String asJsonString(final Object obj) {
 		try {
