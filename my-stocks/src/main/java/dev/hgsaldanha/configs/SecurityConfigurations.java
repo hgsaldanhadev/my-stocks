@@ -19,6 +19,8 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		http
 			.antMatcher("/**")
 				.authorizeRequests().anyRequest().permitAll();
+		http.csrf().disable();
+        http.headers().frameOptions().disable();
  
 		// @formatter:on
 

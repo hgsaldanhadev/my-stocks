@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import dev.hgsaldanha.exception.BrokerNotFoundException;
 import dev.hgsaldanha.model.Broker;
+import dev.hgsaldanha.model.Commision;
 import dev.hgsaldanha.repository.BrokerRepository;
 
 @Service
@@ -22,6 +23,30 @@ public class BrokerService {
 
 	public Broker getBroker(Integer id) throws BrokerNotFoundException {
 		return brokers.findById(id).orElseThrow(() -> new BrokerNotFoundException());
+	}
+
+	public Integer addBroker(String string) {
+		Broker broker = new Broker();
+		broker.setName(string);
+		Commision c = new Commision();
+		c.setPerExercise(0.0);
+		c.setPerTrade(0.0);
+		return addBroker(broker);
+	}
+
+	public Integer addBroker(Broker broker) {
+		broker.setId(null);
+		return brokers.save(broker).getId();
+	}
+
+	public void updateBroker(Broker broker) throws BrokerNotFoundException {
+		brokers.findById(broker.getId()).orElseThrow(() -> new BrokerNotFoundException());
+		brokers.save(broker);
+	}
+
+	public void deleteBroker(Integer id) throws BrokerNotFoundException {
+		brokers.findById(id).orElseThrow(() -> new BrokerNotFoundException());
+		brokers.deleteById(id);
 	}
 
 }

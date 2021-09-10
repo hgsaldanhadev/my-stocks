@@ -8,8 +8,8 @@ import lombok.Data;
 @Embeddable
 public class Commision {
 	
-	private Long perTrade;
+	private Double perTrade;
 	
-	private Long perExercise;
+	private Double perExercise;
 
 }

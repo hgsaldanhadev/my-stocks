@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 
 import lombok.Data;
 
@@ -31,8 +32,10 @@ public class SwingTradeOperationDTO {
 	@PastOrPresent
 	private LocalDate closingDate;
 
+	@Positive
 	private BigDecimal startPrice;
 
+	@PositiveOrZero
 	private BigDecimal closingPrice;
 
 	private String notes;

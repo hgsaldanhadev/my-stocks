@@ -27,7 +27,7 @@ public class SwingTradeOperationController {
 	private SwingTradeOperationService stService; //TODO rever nomes das variáveis
 	
 	@Autowired
-	ModelMapper mm;
+	private ModelMapper mm;
 
 	//TODO carregar o id do usuário da sessão
 	private User getUser() {
