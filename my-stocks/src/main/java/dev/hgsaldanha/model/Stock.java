@@ -25,5 +25,7 @@ public class Stock implements Serializable {
 	private String ticker;
 	
 	private String name;
+	
+	//TODO validations nos models?
 
 }
