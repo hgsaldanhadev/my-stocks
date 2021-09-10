@@ -25,7 +25,7 @@ import dev.hgsaldanha.dto.StockDTO;
 @TestMethodOrder(OrderAnnotation.class)
 class StockControllerTest {
 
-	private static final String API_STOCKS = "/api/stocks";
+	private final String API_STOCKS = "/api/stocks";
 
 	private final String testLocation = API_STOCKS + "/2";
 	
