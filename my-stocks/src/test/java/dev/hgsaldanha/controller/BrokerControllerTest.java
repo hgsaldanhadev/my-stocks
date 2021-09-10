@@ -25,12 +25,13 @@ import dev.hgsaldanha.dto.BrokerDTO;
 @TestMethodOrder(OrderAnnotation.class)
 class BrokerControllerTest {
 
+	private final String API_BROKERS = "/api/brokers";
+	
+	private final String testLocation = API_BROKERS + "/2";
+
 	@Autowired
 	private MockMvc mvc;
 	
-	private final String api = "/api/brokers";
-
-	private String testLocation = api + "/2";
 
 	private String asJsonString(final Object obj) {
 		try {
@@ -47,12 +48,13 @@ class BrokerControllerTest {
 	@Test
 	@Order(1)
 	void testGetBrokers() throws Exception {
-		mvc.perform(MockMvcRequestBuilders.get("/api/brokers").accept(MediaType.APPLICATION_JSON))
+		mvc.perform(MockMvcRequestBuilders.get(API_BROKERS).accept(MediaType.APPLICATION_JSON))
 		.andExpect(MockMvcResultMatchers.status().is(200))
 		.andExpect(MockMvcResultMatchers.content().json("[{name:'Clear'},{name:'Vitreo'},{name:'Rico'}]"));
 	}
 	
 	@Test
+	@Order(2)
 	void testGetBroker() throws Exception {
 		mvc.perform(MockMvcRequestBuilders.get("/api/brokers/1").accept(MediaType.APPLICATION_JSON))
 		.andExpect(MockMvcResultMatchers.status().is(200))
@@ -60,19 +62,20 @@ class BrokerControllerTest {
 	}
 	
 	@Test
+	@Order(3)
 	void testCreateBroker() throws Exception {
 		BrokerDTO broker = new BrokerDTO();
 		broker.setName("Toro");
 		broker.setCommissionPerTrade(0.5);
 		broker.setCommissionPerExercise(0.7);
-		testLocation = mvc.perform(MockMvcRequestBuilders.post("/api/brokers").content(asJsonString(broker))
+		mvc.perform(MockMvcRequestBuilders.post(API_BROKERS).content(asJsonString(broker))
 			.accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
 			.andExpect(MockMvcResultMatchers.status().is(201))
-			.andExpect(MockMvcResultMatchers.header().string("Location", CoreMatchers.startsWith("/api/brokers/")))
-			.andReturn().getResponse().getHeader("Location");
+			.andExpect(MockMvcResultMatchers.header().string("Location", CoreMatchers.startsWith("/api/brokers/")));
 	}
 	
 	@Test
+	@Order(4)
 	void testUpdateBroker() throws Exception {
 		BrokerDTO broker = new BrokerDTO();
 		broker.setName("Ágora");
@@ -88,6 +91,7 @@ class BrokerControllerTest {
 	}
 	
 	@Test
+	@Order(5)
 	void testDeleteBroker() throws Exception {
 		mvc.perform(MockMvcRequestBuilders.delete(testLocation)
 			.accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON))
